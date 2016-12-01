@@ -16,7 +16,7 @@
 ###注意点：
 1. Android 6.0扫描蓝牙需要地理位置权限。
 2. 发送数据、开启通知、读取特征等操作，需要在onServicesDiscovered()发现服务之后才能进行。
-3. 连接设备之前最好先停止扫描（小米手机可能会出现不能发现服务的情况）。
+3. 连接设备之前最好先停止扫描（
 
 ##入门指南
 
@@ -235,9 +235,10 @@
 
 **五、发送数据（到蓝牙特征）**
 
-	//以下两个参数为硬件工程师提供，请你与你司的硬件工程师沟通
-    private static final String SERVICE_UUID = "0000180d-0000-1000-8000-00805f9b34fb";
-    private static final String WRITE_UUID = "0000fff5-0000-1000-8000-00805f9b34fb";
+	
+   private static final String SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
+   private static final String WRITE_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
+ 
 
     mBluetoothLe.writeDataToCharacteristic(bytes, SERVICE_UUID, WRITE_UUID);
 
@@ -274,11 +275,10 @@
 
 **七、开启通知**
 
-	private static final String SERVICE_UUID = "0000180d-0000-1000-8000-00805f9b34fb";
-    private static final String HEART_NOTIFICATION_UUID = "00002a37-0000-1000-8000-00805f9b34fb";
-    private static final String STEP_NOTIFICATION_UUID = "0000fff3-0000-1000-8000-00805f9b34fb";
+  private static final String SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
+  private static final String READ_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
-	mBluetoothLe.enableNotification(true, SERVICE_UUID, STEP_NOTIFICATION_UUID);
+	mBluetoothLe.enableNotification(true, SERVICE_UUID, READ_UUID);
 
 **八、开启多个通知**
 
@@ -305,9 +305,8 @@
     });
 
 **十、读取数据**
-
-    private static final String SERVICE_UUID = "0000180d-0000-1000-8000-00805f9b34fb";
-    private static final String READ_UUID = "0000fff5-0000-1000-8000-00805f9b34fb";
+  private static final String SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
+  private static final String READ_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
 
     mBluetoothLe.readCharacteristic(SERVICE_UUID, READ_UUID);
 
@@ -381,33 +380,4 @@
 1. 连续操作发送数据、读取特征、开启通知操作设置优先级，像网络请求一样设置优先级
 2. 蓝牙设备信号强度监听
 
-##了解更多
 
-1. See Demo： [MainActivity.java](https://github.com/qindachang/BluetoothLELibrary/blob/master/app/src/main/java/com/qindachang/bluetoothlelibrary/MainActivity.java "MainActivity.java") / [activity_main.xml](https://github.com/qindachang/BluetoothLELibrary/blob/master/app/src/main/res/layout/activity_main.xml "activity_main.xml")
-2. QQ: 714275846 / 823951895
-3. 邮箱：qindachang@outlook.com
-4. 博客：http://blog.csdn.net/u013003052
-5. Github: https://github.com/qindachang
-
-##版本迭代
-1. [Version 0.1.0](https://github.com/qindachang/BluetoothLELibrary/blob/master/document/version-0.1.0.md "Version 0.1.0")
-2. [Version 0.1.1](https://github.com/qindachang/BluetoothLELibrary/blob/master/document/version-0.1.1.md "Version 0.1.1")
-
-    增加：取消所有队列
-
-3. [Version 0.2.0](https://github.com/qindachang/BluetoothLELibrary/blob/master/document/version-0.2.0.md "Version 0.2.0")
-
-    增加：
-
-    清理蓝牙缓存；
-    判断蓝牙是否打开；
-    请求打开蓝牙。
-
-4. [Version 0.2.1] 增加获取蓝牙连接状态。
-5. [Version 0.2.2] fix bug.
-6. [Version 0.3.0](https://github.com/qindachang/BluetoothLELibrary/blob/master/document/version-0.3.0.md "Version 0.3.0")
-
-    增加：类似volley的TAG，可以取消对应TAG的监听，避免内存泄露。
-7. [Version 0.3.2]
-
-    增加：连接超时设置，连接不上的情况下尝试重连的次数设置，或者发现不了服务情况尝试重连次数

@@ -1,6 +1,6 @@
-#BluetoothLE library
+#BluetoothLE librarys
 
-[English](https://github.com/qindachang/BluetoothLELibrary/blob/master/README-EN.md "English")
+
 
 低功耗蓝牙库。**优势**：
 
@@ -30,11 +30,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
-**引入方式**
-
-	compile 'com.qindachang:BluetoothLELibrary:0.3.0'
-
 
 **前戏**
 
